@@ -29,12 +29,12 @@ def concat(path, name):
 
 
 """ 
-path = "C:/Users/ACER/PycharmProjects/InterfaceHotel"
+path = "C:\Users\ryan.peart\OneDrive - Accenture\Documents\GitHub\hotel-scraping\InterfaceHotel"
 df = pd.read_csv(path+"/test_carte.csv", sep=";")
 df['stars'].fillna("0",inplace=True)
 df.to_csv(path+"/test_carte.csv", index=False,sep=";")
 """
-path = "C:/Users/ACER/PycharmProjects/InterfaceHotel"
+path = "C:\Users\ryan.peart\OneDrive - Accenture\Documents\GitHub\hotel-scraping\InterfaceHotel"
 df = pd.read_csv(path+"/test_carte.csv", sep=";")
 
 new_list=[]
