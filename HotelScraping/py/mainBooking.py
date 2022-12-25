@@ -30,7 +30,7 @@ for y in years:
 nbr_adults = [1, 2]
 nbr_children = [0, 2]
 nbr_rooms = [1, 2, 3, 4, 5, 6]
-city = "paris"
+city = "New York"
 
 
 nbr_csv = 0
