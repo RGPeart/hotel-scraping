@@ -19,6 +19,8 @@
 
 ## Description
 
+This project was forked from: https://github.com/clementreiffers/hotel-scraping
+
 Scraping project made in python using selenium.  
 Project main goal is to scrap datas from different website for study.
 The python scripts create bots that navigates through the different hotels website (hotels.com, booking, trivago and kayak). It will use the research system and it will scrap all hotels' data on every available pages (the data gathered are stored into differente csv files, one csv file for each website).  
@@ -81,25 +83,11 @@ Flutter GUI prototype projetc :
 
 ## Contributors
 
-Maëlle Marcelin :  
+Ryan Peart :  
 
-- @maaelle
-- <https://github.com/maaelle>
+- @RGPeart
+- <https://github.com/RGPeart>
 
-Clément Reiffers :
-
-- @clementreiffers
-- <https://github.com/clementreiffers>
-
-Quentin Morel :
-
-- @Im-Rises
-- <https://github.com/Im-Rises>
-
-Adrien Tirlemont :
-
-- @Meatisdelicious
-- <https://github.com/Meatisdelicious>
 
 ## APIs
 
