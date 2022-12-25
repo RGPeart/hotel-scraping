@@ -2,7 +2,7 @@
 """
 Created on Wed Mar 16 21:57:06 2022
 
-@author: ACER
+@author: RGPeart
 """
 
 
@@ -22,28 +22,29 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 import commonFunctions
+
 monthCorrespondances = {
-    "01": "janvier",
-    "02": "février",
-    "03": "mars",
-    "04": "avril",
-    "05": "mai",
-    "06": "juin",
-    "07": "juillet",
-    "08": "août",
-    "09": "septembre",
-    "10": "octobre",
-    "11": "novembre",
-    "12": "décembre",
+    "01": "january",
+    "02": "february",
+    "03": "march",
+    "04": "april",
+    "05": "may",
+    "06": "june",
+    "07": "july",
+    "08": "august",
+    "09": "september",
+    "10": "october",
+    "11": "november",
+    "12": "december",
 }
 
 # éléments de recherche
 
-city = "Paris"
+city = "New York"
 date_set = "06-11-2023"
 current_date = datetime.date.today()
-set_adulte = "2"
-set_enfant = "2"
+set_adults = "2"
+set_kids = "2"
 chambre = "1"
 
 date_day, date_month, date_year = commonFunctions.separateAmericanDate(date_set)
@@ -66,7 +67,7 @@ driver = webdriver.Firefox()
 driver.get("https://fr.hotels.com/")
 time.sleep(5)
 
-# acceptation des cookies
+# accepting cookies
 driver.find_element(by="xpath",
                     value="//button[@class='osano-cm-accept-all osano-cm-buttons__button osano-cm-button osano-cm-button--type_accept']").click()
 time.sleep(5)
@@ -107,28 +108,28 @@ driver.find_element(by="xpath",
 
 driver.find_element(by="xpath", value="//button[@aria-label='1 chambre, 2 pers.']").click()
 
-adulte = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
-enfant = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
+adult = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
+kid = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
 
 btn = driver.find_elements(by="xpath", value="//button[@class='uitk-layout-flex-item uitk-step-input-touch-target']")
 
-while adulte != "1":
+while adult != "1":
     btn[0].click()
-    adulte = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
+    adult = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
 
-while adulte < set_adulte:
+while adult < set_adults:
     btn[1].click()
-    adulte = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
+    adult = driver.find_element(by="xpath", value="//input[@id='adult-input-0']").get_attribute("value")
 
-while enfant != "0":
+while kid != "0":
     btn[2].click()
-    enfant = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
+    kid = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
 
-while enfant < set_enfant:
+while kid < set_kids:
     btn[3].click()
-    enfant = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
+    kid = driver.find_element(by="xpath", value="//input[@id='child-input-0']").get_attribute("value")
 
-if set_enfant == "2":
+if set_kids == "2":
     select_element = driver.find_element(by="id", value='child-age-input-0-0')
     select_object = Select(select_element)
     select_object.select_by_index(10)
@@ -182,8 +183,8 @@ localisation = []
 grade = []
 start_date = []
 end_date = []
-nb_adulte = []
-nb_enfant = []
+nb_adult = []
+nb_kid = []
 nb_chambre = []
 
 print(len(name))
@@ -227,8 +228,8 @@ for link in link_list:
     stars.append(stars_hotel)
     start_date.append(date_set)
     end_date.append(date_end_set)
-    nb_adulte.append(set_adulte)
-    nb_enfant.append(set_enfant)
+    nb_adult.append(set_adults)
+    nb_kid.append(set_kids)
     nb_chambre.append(chambre)
 
     # on ferme l'onglet
@@ -240,8 +241,8 @@ localisation = list(
     map(lambda add: commonFunctions.getLocalisationFromAdd(add) if address is not None else np.nan, address))
 
 
-df = pd.DataFrame(list(zip(name, grade, stars, prices, address, localisation, start_date, end_date, nb_adulte, nb_enfant, nb_chambre, links)),
-                  columns=['name', 'grade','stars', 'prices','address', 'gps', 'start_date','end_date', 'nb_adulte','nb_enfant','nb_chambre', 'link' ])
+df = pd.DataFrame(list(zip(name, grade, stars, prices, address, localisation, start_date, end_date, nb_adult, nb_kid, nb_chambre, links)),
+                  columns=['name', 'grade','stars', 'prices','address', 'gps', 'start_date','end_date', 'nb_adult','nb_kid','nb_chambre', 'link' ])
 
 # création du CSV
 
